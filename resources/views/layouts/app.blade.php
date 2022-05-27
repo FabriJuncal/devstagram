@@ -11,8 +11,29 @@
         <script src="{{ asset('js/app.js')}}" defer></script>
     </head>
     <body class="bg-gray-100">
+        <header class="p-5 border-b bg-white shadow">
+            <div class="container mx-auto flex justify-between items-center">
+                <h1 class="text-3xl font-black">
+                    DevStagram
+                </h1>
 
-        <h1 class="text-5xl font-black">@yield('titulo')</h1>
+                <nav>
+                    <a class="font-bold uppercase text-gray-600" href="#">Login</a>
+                    <a class="font-bold uppercase text-gray-600" href="#">Crear Cuenta</a>
+                </nav>
+            </div>
+        </header>
 
+        <main class="container mx-auto mt-10">
+            <h2 class="font-black text-center text-3xl mb-10">
+                @yield('titulo')
+            </h2>
+            @yield('contenido')
+        </main>
+
+        <footer class="text-center p-5 text-gray-500 font-bold">
+            {{-- now(): Helper de Laravel para mostrar la fecha actual --}}
+            DevStagram - Todos los derechos reservados {{ now()->year }}
+        </footer>
     </body>
 </html>
