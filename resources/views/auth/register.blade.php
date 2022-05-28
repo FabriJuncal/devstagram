@@ -26,7 +26,14 @@
                     name="name"
                     type="text"
                     placeholder="Tu Nombre"
-                    class="border p-2 w-full rounded-lg">
+                    class="border p-2 w-full rounded-lg"
+                    value="{{ old('name') }}">
+
+                    @error('name')
+                        <span class="text-red-500 text-xs Helvetica">
+                            * {{ $message }}
+                        </span>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="username" class="mb-1 block uppercase text-gray-500 font-bold">

@@ -82,7 +82,9 @@ return [
     |
     */
 
-    'locale' => 'en',
+    // Se clonó el repositorio: https://github.com/MarcoGomesr/laravel-validation-en-espanol
+    // para obtener los mensajes de las validaciones de Laravel en Español
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------

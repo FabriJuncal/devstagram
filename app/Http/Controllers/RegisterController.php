@@ -21,5 +21,10 @@ class RegisterController extends Controller
 
         // $request->get('string') => Esta función sirve para obtener uno de los datos que se envían desde el formulario de registro.
         // dd($request->get('username'));
+
+        // $this->validate(Instancia del "Request", Array con las reglas de validación) => Esta función sirve para validar los datos que se envían desde el formulario de registro.
+        $this->validate($request, [
+            'name' => 'required|max:30' // El nombre es requerido y no puede tener más de 30 caracteres.
+        ]);
     }
 }
