@@ -14,7 +14,8 @@
 
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-lg">
             {{-- route('string') => con esta función hacemos referencia al Alias de la ruta --}}
-            <form action="{{ route('register') }}" method="POST">
+            {{-- novalidate => Deshabilita la validación de HTML5 --}}
+            <form action="{{ route('register') }}" method="POST" novalidate>
                 {{-- @csrf => Se utiliza esta función para generar un hash de seguridad que se utilizará para cada petición que se realice --}}
                 @csrf
                 <div class="mb-3">
@@ -26,7 +27,7 @@
                     name="name"
                     type="text"
                     placeholder="Tu Nombre"
-                    class="border p-2 w-full rounded-lg"
+                    class="border p-2 w-full rounded-lg @error('name') border-red-500 @enderror"
                     value="{{ old('name') }}">
 
                     @error('name')
@@ -44,7 +45,13 @@
                     name="username"
                     type="text"
                     placeholder="Tu Nombre de Usuario"
-                    class="border p-2 w-full rounded-lg">
+                    class="border p-2 w-full rounded-lg @error('username') border-red-500 @enderror">
+
+                    @error('username')
+                        <span class="text-red-500 text-xs Helvetica">
+                            * {{ $message }}
+                        </span>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="email" class="mb-1 block uppercase text-gray-500 font-bold">
@@ -55,7 +62,13 @@
                     name="email"
                     type="text"
                     placeholder="Tu Email de Registro"
-                    class="border p-2 w-full rounded-lg">
+                    class="border p-2 w-full rounded-lg  @error('email') border-red-500 @enderror">
+
+                    @error('email')
+                        <span class="text-red-500 text-xs Helvetica">
+                            * {{ $message }}
+                        </span>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="password" class="mb-1 block uppercase text-gray-500 font-bold">
@@ -66,7 +79,13 @@
                     name="password"
                     type="text"
                     placeholder="Password de Registro"
-                    class="border p-2 w-full rounded-lg">
+                    class="border p-2 w-full rounded-lg @error('password') border-red-500 @enderror">
+
+                    @error('password')
+                        <span class="text-red-500 text-xs Helvetica">
+                            * {{ $message }}
+                        </span>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     {{-- En el campo "Repetir Password" se agregá "_confirmation" en los siguientes atributos
