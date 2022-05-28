@@ -13,7 +13,8 @@
         </div>
 
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-lg">
-            <form action="/crear-cuenta" method="POST">
+            {{-- route('string') => con esta función hacemos referencia al Alias de la ruta --}}
+            <form action="{{ route('register') }}" method="POST">
                 {{-- @csrf => Se utiliza esta función para generar un hash de seguridad que se utilizará para cada petición que se realice --}}
                 @csrf
                 <div class="mb-3">
