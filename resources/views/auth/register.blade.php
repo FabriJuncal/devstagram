@@ -14,6 +14,8 @@
 
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-lg">
             <form action="/crear-cuenta" method="POST">
+                {{-- @csrf => Se utiliza esta función para generar un hash de seguridad que se utilizará para cada petición que se realice --}}
+                @csrf
                 <div class="mb-3">
                     <label for="name" class="mb-1 block uppercase text-gray-500 font-bold">
                         Nombre
