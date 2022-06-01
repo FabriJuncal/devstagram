@@ -45,7 +45,8 @@
                     name="username"
                     type="text"
                     placeholder="Tu Nombre de Usuario"
-                    class="border p-2 w-full rounded-lg @error('username') border-red-500 @enderror">
+                    class="border p-2 w-full rounded-lg @error('username') border-red-500 @enderror"
+                    value="{{ old('username') }}">
 
                     @error('username')
                         <span class="text-red-500 text-xs Helvetica">
@@ -60,9 +61,10 @@
                     <input
                     id="email"
                     name="email"
-                    type="text"
+                    type="email"
                     placeholder="Tu Email de Registro"
-                    class="border p-2 w-full rounded-lg  @error('email') border-red-500 @enderror">
+                    class="border p-2 w-full rounded-lg  @error('email') border-red-500 @enderror"
+                    value="{{ old('email') }}">
 
                     @error('email')
                         <span class="text-red-500 text-xs Helvetica">
@@ -77,7 +79,7 @@
                     <input
                     id="password"
                     name="password"
-                    type="text"
+                    type="password"
                     placeholder="Password de Registro"
                     class="border p-2 w-full rounded-lg @error('password') border-red-500 @enderror">
 
@@ -96,9 +98,9 @@
                     <input
                     id="password_confirmation"
                     name="password_confirmation"
-                    type="text"
+                    type="password"
                     placeholder="Repite tu Password"
-                    class="border p-2 w-full rounded-lg">
+                    class="border p-2 w-full rounded-lg @error('password') border-red-500 @enderror">
                 </div>
 
                 <input

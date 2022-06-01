@@ -27,7 +27,10 @@ class RegisterController extends Controller
             'name' => 'required|max:30', // El nombre es requerido y no puede tener más de 30 caracteres.
             'username' => 'required|unique:users|min:3|max:20', // El nombre de usuario es requerido y debe ser único, no puede tener menos de 3 caracteres y no puede tener más de 20 caracteres.
             'email' => 'required|unique:users|email|max:60', // El email es requerido y debe ser único, debe ser un email válido y no puede tener más de 60 caracteres.
-            'password' => 'required|min:6', // El password es requerido y debe tener más de 6 caracteres.
+            'password' => 'required|confirmed|min:6', // El password es requerido y debe tener más de 6 caracteres.
         ]);
+
+
+        dd('Registro completado');
     }
 }
