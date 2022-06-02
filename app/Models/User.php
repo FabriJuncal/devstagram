@@ -13,14 +13,17 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
-     *
+     * Atributos protegidos por laravel, donde este espera que el usuario haga el INSERT.
+     * Cada vez que se creá un campo nuevo en la tabla "users" se debe agregar en este array.
+     * De lo contrario, se obtendrá el mensaje:
+     * SQLSTATE[HY000]: General error: 1364 Field '[NOMBRE_CAMPO]' doesn't have a default value
      * @var array<int, string>
      */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'username'
     ];
 
     /**
