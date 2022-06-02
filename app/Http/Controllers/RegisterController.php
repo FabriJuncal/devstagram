@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
@@ -37,7 +38,7 @@ class RegisterController extends Controller
         // User::create => Esta función es el equivalente a "INSERT INTO users (name, username, email, password) VALUES (...)".
         User::create([
             'name' => $request->name,
-            'username' => $request->username, // Para no obtener error al hacer el INSERT del campo "username" se debe agregar entre los campos protegidos en el archivo "app\Models\User.php".
+            'username' => Str::lower( $request->username ), // Para no obtener error al hacer el INSERT del campo "username" se debe agregar entre los campos protegidos en el archivo "app\Models\User.php".
             'email' => $request->email,
             'password' => Hash::make( $request->password ) // El password se encripta con la función "Hash::make()" de Laravel.
         ]);
