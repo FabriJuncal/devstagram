@@ -46,5 +46,8 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make( $request->password ) // El password se encripta con la función "Hash::make()" de Laravel.
         ]);
+
+
+        return redirect()->route('post.index');
     }
 }

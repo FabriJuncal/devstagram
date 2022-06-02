@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,5 @@ Route::get('/', function () {
 // solo se tiene que agregar el Alias a la primera ruta y debajo agregar toda la rutas iguales pero con distinto método.
 Route::get('/crear-cuenta', [RegisterController::class, 'index'])->name('register');
 Route::post('/crear-cuenta', [RegisterController::class, 'store']);
+
+Route::get('/muro', [PostController::class, 'index'])->name('post.index');
