@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -31,6 +32,13 @@ class RegisterController extends Controller
         ]);
 
 
-        dd('Registro completado');
+        // Hacemos uso del ORM Eloquent para crear un nuevo registro en la tabla "users"
+        // User::create => Esta función es el equivalente a "INSERT INTO users (name, username, email, password) VALUES (...)".
+        User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
     }
 }
