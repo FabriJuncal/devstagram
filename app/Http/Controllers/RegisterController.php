@@ -25,6 +25,10 @@ class RegisterController extends Controller
         // $request->get('string') => Esta función sirve para obtener uno de los datos que se envían desde el formulario de registro.
         // dd($request->get('username'));
 
+        // Modificación del Request
+        //$request->request->add() => Esta función sobreescribe el valor del campo que se le pasa como parámetro.
+        $request->request->add(["username" => Str::slug( $request->username )]);
+
         // $this->validate(Instancia del "Request", Array con las reglas de validación) => Esta función sirve para validar los datos que se envían desde el formulario de registro.
         $this->validate($request, [
             'name' => 'required|max:30', // El nombre es requerido y no puede tener más de 30 caracteres.
@@ -38,7 +42,7 @@ class RegisterController extends Controller
         // User::create => Esta función es el equivalente a "INSERT INTO users (name, username, email, password) VALUES (...)".
         User::create([
             'name' => $request->name,
-            'username' => Str::lower( $request->username ), // Para no obtener error al hacer el INSERT del campo "username" se debe agregar entre los campos protegidos en el archivo "app\Models\User.php".
+            'username' => $request->username, // Para no obtener error al hacer el INSERT del campo "username" se debe agregar entre los campos protegidos en el archivo "app\Models\User.php".
             'email' => $request->email,
             'password' => Hash::make( $request->password ) // El password se encripta con la función "Hash::make()" de Laravel.
         ]);
