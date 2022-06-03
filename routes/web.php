@@ -30,5 +30,6 @@ Route::get('/crear-cuenta', [RegisterController::class, 'index'])->name('registe
 Route::post('/crear-cuenta', [RegisterController::class, 'store']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store']);
 
 Route::get('/muro', [PostController::class, 'index'])->name('post.index');
