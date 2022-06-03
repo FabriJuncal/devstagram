@@ -27,5 +27,18 @@ class LoginController extends Controller
             'email' => 'required|email', // El email es requerido y debe ser un email válido.
             'password' => 'required', // El password es requerido.
         ]);
+
+        // Validamos la autenticación del usuario
+        if(!auth()->attempt($request->only('email', 'password'))){
+            // back() => Esta función sirve para regresar a la página anterior.
+            // with() => Esta función sirve para enviar una variable con algún valor a la página que se está redireccionando.
+            // 1er Parametro => Nombre de la variable que se va a enviar.
+            // 2do Parametro => Valor de la variable que se va a enviar.
+
+            return back()->with('mensaje', 'Credenciales Incorrectas');
+        }
+
+        // Si la autenticación es correcta, se redirecciona al usuario al muro.
+        return redirect()->route('post.index');
     }
 }
