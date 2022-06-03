@@ -9,6 +9,7 @@ class PostController extends Controller
     public function __construct()
     {
         // Valida que haya un Usuario Autenticado, de esta manera protegemos la ruta en el cual se requiere que el usuario se encuentre logeado
+        // Por defecto redirecciona a la ruta "login", por lo tanto hay que crear esta vista en la carpeta "resources/views/auth"
         $this->middleware('auth');
     }
 
