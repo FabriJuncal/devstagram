@@ -47,6 +47,20 @@ class RegisterController extends Controller
             'password' => Hash::make( $request->password ) // El password se encripta con la función "Hash::make()" de Laravel.
         ]);
 
+        // auth() => Este helper (función de ayuda) sirve para obtener el objeto de autenticación de Laravel.
+        // auth()->attempt() => Esta función sirve para autenticar al usuario.
+        //                      Recibe como parametro un array con los datos del usuario y un  booleano (Opcional) que indica si se debe recordar al usuario,
+        //                      Por defecto el valor es "False".
+
+        // Forma Extendida de Autenticar un Usuario
+        // auth()->attempt([
+        //     'email' => $request->email,
+        //     'password' => $request->password
+        // ]);
+
+        // Forma Corta de Autenticar un Usuario
+        auth()->attempt($request->only('email', 'password'));
+
 
         return redirect()->route('post.index');
     }
