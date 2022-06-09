@@ -17,11 +17,30 @@
                     DevStagram
                 </h1>
 
-                <nav>
-                    <a class="font-bold uppercase text-gray-600" href="#">Login</a>
-                    {{-- route('string') => con esta función hacemos referencia al Alias de la ruta --}}
-                    <a class="font-bold uppercase text-gray-600" href="{{ route('register') }}">Crear Cuenta</a>
-                </nav>
+                {{-- Directiva que detecta si el usuario se encuentra Logeado y muestra lo que tenga dentro --}}
+                @auth
+                    <nav>
+                        <a class="font-bold text-gray-600" href="{{ route('login') }}">
+                            Hola:
+                            <span class="font-normal">
+                                {{ Auth::user()->name }}
+                            </span>
+                        </a>
+                        {{-- route('string') => con esta función hacemos referencia al Alias de la ruta --}}
+                        <a class="font-bold uppercase text-gray-600" href="{{ route('register') }}">Cerrar Sesión</a>
+                    </nav>
+                @endauth
+
+                {{-- Directiva que detecta si el usuario NO se encuentra Logeado y muestra lo que tenga dentro --}}
+                @guest
+                    <nav>
+                        <a class="font-bold uppercase text-gray-600" href="{{ route('login') }}">Login</a>
+                        {{-- route('string') => con esta función hacemos referencia al Alias de la ruta --}}
+                        <a class="font-bold uppercase text-gray-600" href="{{ route('register') }}">Crear Cuenta</a>
+                    </nav>
+                @endguest
+
+
             </div>
         </header>
 
