@@ -26,8 +26,14 @@
                                 {{ Auth::user()->name }}
                             </span>
                         </a>
-                        {{-- route('string') => con esta función hacemos referencia al Alias de la ruta --}}
-                        <a class="font-bold uppercase text-gray-600" href="{{ route('logout') }}">Cerrar Sesión</a>
+                        {{-- Creamos un "form" para cerrar la sesión, así de este modo se realiza una petición POST y podemos utilizar la directiva "@csrf" para tener mas seguridad --}}
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="font-bold uppercase text-gray-600 text-sm">
+                                Cerrar Sesión
+                            </button>
+                        </form>
+
                     </nav>
                 @endauth
 
