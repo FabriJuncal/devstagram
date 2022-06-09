@@ -29,12 +29,15 @@ class LoginController extends Controller
         ]);
 
         // Validamos la autenticación del usuario
-        if(!auth()->attempt($request->only('email', 'password'))){
+        // auth()->attempt([DATOS INICIO SESION]], "on"/null) =>
+        // 1er parámetro: Array con los datos de inicio de sesión.
+        // 2do parámetro: "on" => Si se desea que se guarde la sesión en el navegador.
+        if(!auth()->attempt($request->only('email', 'password'), $request->remember)){
+
             // back() => Esta función sirve para regresar a la página anterior.
             // with() => Esta función sirve para enviar una variable con algún valor a la página que se está redireccionando.
             // 1er Parametro => Nombre de la variable que se va a enviar.
             // 2do Parametro => Valor de la variable que se va a enviar.
-
             return back()->with('mensaje', 'Credenciales Incorrectas');
         }
 
