@@ -27,7 +27,7 @@
                             </span>
                         </a>
                         {{-- route('string') => con esta función hacemos referencia al Alias de la ruta --}}
-                        <a class="font-bold uppercase text-gray-600" href="{{ route('register') }}">Cerrar Sesión</a>
+                        <a class="font-bold uppercase text-gray-600" href="{{ route('logout') }}">Cerrar Sesión</a>
                     </nav>
                 @endauth
 
