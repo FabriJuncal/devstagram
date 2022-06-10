@@ -21,7 +21,10 @@ class PostController extends Controller
         //                   Este muestra los datos del usuario que se encuentra autenticado.
         // dd(auth()->user());
 
-        dd($user->username);
-        return view('dashboard');
+        // View() => Esta función sirve para redireccionar a una vistal.
+        // 1er Parametro => Nombre de la vista
+        // 2do Parametro => Arreglo con los datos que se le pasan a la vista
+        // compact('user') => Esta función sirve para crear un arreglo con el Key y Value iguales, es decir, es el equivalente de [user => $user]
+        return view('dashboard', compact('user'));
     }
 }
