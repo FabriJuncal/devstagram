@@ -18,18 +18,36 @@
                 {{-- @csrf => Se utiliza esta función para generar un hash de seguridad que se utilizará para cada petición que se realice --}}
                 @csrf
                 <div class="mb-3">
-                    <label for="name" class="mb-1 block uppercase text-gray-500 font-bold">
-                        Nombre
+                    <label for="titulo" class="mb-1 block uppercase text-gray-500 font-bold">
+                        Titulo
                     </label>
                     <input
-                    id="name"
-                    name="name"
+                    id="titulo"
+                    name="titulo"
                     type="text"
-                    placeholder="Tu Nombre"
-                    class="border p-2 w-full rounded-lg @error('name') border-red-500 @enderror"
-                    value="{{ old('name') }}">
+                    placeholder="Titulo de la Publicación"
+                    class="border p-2 w-full rounded-lg @error('titulo') border-red-500 @enderror"
+                    value="{{ old('titulo') }}">
 
-                    @error('name')
+                    @error('titulo')
+                        <span class="text-red-500 text-xs Helvetica">
+                            * {{ $message }}
+                        </span>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="mb-1 block uppercase text-gray-500 font-bold">
+                        Descripción
+                    </label>
+                    <input
+                    id="descripcion"
+                    name="descripcion"
+                    type="text"
+                    placeholder="Descripción de la Publicación"
+                    class="border p-2 w-full rounded-lg @error('descripcion') border-red-500 @enderror"
+                    value="{{ old('descripcion') }}">
+
+                    @error('descripcion')
                         <span class="text-red-500 text-xs Helvetica">
                             * {{ $message }}
                         </span>
