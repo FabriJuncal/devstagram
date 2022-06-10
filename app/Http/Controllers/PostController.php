@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,12 +14,14 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    // Instanciamos de la clase "User" y lo pasamos como parametro al método
+    public function index(User $user)
     {
         // auth()->user() => Esta función sirve para obtener el objeto de autenticación de Laravel.
         //                   Este muestra los datos del usuario que se encuentra autenticado.
         // dd(auth()->user());
 
+        dd($user->username);
         return view('dashboard');
     }
 }

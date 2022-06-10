@@ -34,4 +34,6 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
-Route::get('/muro', [PostController::class, 'index'])->name('post.index');
+// Esta caracteristica de enviar parametros por medio de la URL y filtrar información obtenida de la base de datos se denomina Router Model Binding
+// Esta caracteristica se utiliza para que el controlador pueda obtener los datos de la base de datos a través de una ruta con un parametro
+Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index');
