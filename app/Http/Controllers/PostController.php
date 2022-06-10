@@ -27,4 +27,10 @@ class PostController extends Controller
         // compact('user') => Esta función sirve para crear un arreglo con el Key y Value iguales, es decir, es el equivalente de [user => $user]
         return view('dashboard', compact('user'));
     }
+
+
+    public function create()
+    {
+        dd('Creando Post...');
+    }
 }
