@@ -42,6 +42,6 @@ class LoginController extends Controller
         }
 
         // Si la autenticación es correcta, se redirecciona al usuario al muro.
-        return redirect()->route('post.index');
+        return redirect()->route('post.index', auth()->user()->username);
     }
 }
