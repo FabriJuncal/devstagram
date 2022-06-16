@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        {{-- CDN de Dropzone: Librería para subír archivos al servidor => https://www.dropzone.dev/js/ --}}
+        <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
         {{-- asset() => Hace dinamica las ruta cuando se compila en el directorio "public" --}}
         <link rel="stylesheet" href="{{ asset('css/app.css')}}">
         {{-- @yield() => Contenedor que reserva el lugar para el texto u código html que pasemos como parametro --}}

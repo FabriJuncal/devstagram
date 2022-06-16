@@ -8,7 +8,8 @@
 @section('contenido')
     <div class="md:flex md:justify-center md:gap-10 md:items-center text-sm">
         <div class="md:w-6/12 max-w-2xl">
-            <img src="" alt="Imagen Publicación">
+            <form  id="dropzone" class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center">
+            </form>
         </div>
 
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-lg">
