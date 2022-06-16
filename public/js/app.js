@@ -12,8 +12,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var dropzone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dropzone */ "./node_modules/dropzone/dist/dropzone.mjs");
 // Libreria JS para subir imagenes al servidor
 // Documentación: https://docs.dropzone.dev/
+ // Si está utilizando una versión anterior a Dropzone 6.0.0,
+// entonces necesita deshabilitar el comportamiento de detección automática aquí:
 
-dropzone__WEBPACK_IMPORTED_MODULE_0__["default"].autoDiscover = false;
+dropzone__WEBPACK_IMPORTED_MODULE_0__["default"].autoDiscover = false; // Función para subir imagenes al servidor
+// 1er Parametro: Elemento HTML que contiene el formulario
+// 2do Parametro: Objeto con la configuración
+
 var dropzone = new dropzone__WEBPACK_IMPORTED_MODULE_0__["default"]("#dropzone", {
   dictDefaultMessage: "Sube aquí tu imagen",
   acceptedFiles: ".png,.jpg,.jpeg, .gif",

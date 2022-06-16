@@ -5,10 +5,19 @@
     Crea una nueva Publicación
 @endsection
 
+{{--
+    Con esta directiva hacemos referencia al espacio reservado "@stack('styles')" en donde todo lo que agregemos dentro de este, se importará en el espacio reservado
+    donde se encuentra la directiva "@stack('styles')"
+--}}
+@push('styles')
+    {{-- CDN de Dropzone: Librería para subír archivos al servidor => https://www.dropzone.dev/js/ --}}
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+@endpush
+
 @section('contenido')
     <div class="md:flex md:justify-center md:gap-10 md:items-center text-sm">
         <div class="md:w-6/12 max-w-2xl">
-            <form  id="dropzone" class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center">
+            <form action="{{ route('imagenes.store') }}"  id="dropzone" class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center">
             </form>
         </div>
 

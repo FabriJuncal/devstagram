@@ -3,8 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {{-- CDN de Dropzone: Librería para subír archivos al servidor => https://www.dropzone.dev/js/ --}}
-        <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+        {{-- @stack('styles') => Directiva que se utiliza para reservar este espacio, en donde luego podemos hacer referencia a este con la directiva "@push('styles')"
+                                 y asignarle una importación.
+                                 Puede ser una importación de Estilos CSS como así tambien de JavaScript.
+        @stack([PARAMETRO]) => Como parametro recibe un string que se definirá como el nombre de esta directiva. --}}
+        @stack('styles')
         {{-- asset() => Hace dinamica las ruta cuando se compila en el directorio "public" --}}
         <link rel="stylesheet" href="{{ asset('css/app.css')}}">
         {{-- @yield() => Contenedor que reserva el lugar para el texto u código html que pasemos como parametro --}}
