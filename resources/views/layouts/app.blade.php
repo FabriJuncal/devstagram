@@ -30,7 +30,7 @@
                             Crear
                         </a>
 
-                        <a class="font-bold text-gray-600" href="{{ route('login') }}">
+                        <a class="font-bold text-gray-600" href="{{ route('post.index', auth()->user()->username) }}">
                             Hola:
                             <span class="font-normal">
                                 {{ Auth::user()->name }}
