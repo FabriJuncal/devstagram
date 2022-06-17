@@ -13,6 +13,6 @@ class ImagenController extends Controller
         $imagen = $request->file('file');
 
         // response()->json() => Es un Helper de Laravel que se utiliza para devolver una respuesta en formato JSON
-        return response()->json(['imagen' => $imagen->extension()]);
+        return response()->json(['imagen' => "Probando Respuesta"]);
     }
 }
