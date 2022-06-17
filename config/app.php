@@ -197,6 +197,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // Provider de Intervention.io => https://image.intervention.io/v2/introduction/installation
+        Intervention\Image\ImageServiceProvider::class
+
     ],
 
     /*
@@ -212,6 +215,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ])->toArray(),
 
 ];
