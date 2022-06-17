@@ -18,6 +18,7 @@
     <div class="md:flex md:justify-center md:gap-10 md:items-center text-sm">
         <div class="md:w-6/12 max-w-2xl">
             <form action="{{ route('imagenes.store') }}"  id="dropzone" class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center">
+                @csrf
             </form>
         </div>
 
