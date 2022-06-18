@@ -28,9 +28,19 @@ class PostController extends Controller
         return view('dashboard', compact('user'));
     }
 
-
+    // La función "create" siempre se encargará de mostrar mediante un GET, la vista "create" donde estará el formulario de ALTA
     public function create()
     {
         return view('posts.create');
+    }
+
+    // La función "store" siempre se ejecutará mediante una petición POST, este se encargará de Validat Guardar los datos en la base de datos
+    public function store(Request $request)
+    {
+
+        $this->validate($request, [
+            'titulo' => 'required|max:255',
+            'descripcion' => 'required',
+        ]);
     }
 }

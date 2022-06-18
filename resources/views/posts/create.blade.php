@@ -25,7 +25,7 @@
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-lg">
             {{-- route('string') => con esta función hacemos referencia al Alias de la ruta --}}
             {{-- novalidate => Deshabilita la validación de HTML5 --}}
-            <form action="{{ route('register') }}" method="POST" novalidate>
+            <form action="{{ route('posts.store') }}" method="POST" novalidate>
                 {{-- @csrf => Se utiliza esta función para generar un hash de seguridad que se utilizará para cada petición que se realice --}}
                 @csrf
                 <div class="mb-3">

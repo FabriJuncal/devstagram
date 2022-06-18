@@ -39,6 +39,7 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 // Esta caracteristica se utiliza para que el controlador pueda obtener los datos de la base de datos a través de una ruta con un parametro
 Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
 // Controlador que se encarga de subir las imagenes al servidor
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
