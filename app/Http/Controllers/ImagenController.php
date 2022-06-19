@@ -29,6 +29,6 @@ class ImagenController extends Controller
         $imagenServidor->save($imagenPath);
 
         // response()->json() => Es un Helper de Laravel que se utiliza para devolver una respuesta en formato JSON
-        return response()->json(['imagen' => "Probando Respuesta"]);
+        return response()->json(['imagen' => $nombreImagen]);
     }
 }

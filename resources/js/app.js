@@ -20,19 +20,20 @@ const dropzone = new Dropzone("#dropzone", {
 });
 
 // Evento que se ejecuta cuando esta en proceso la subida de la imagen
-dropzone.on("sending", function(file, xhr, formData) {
-    console.log(formData);
-});
+// dropzone.on("sending", function(file, xhr, formData) {
+//     console.log(formData);
+// });
 
 // Evento que se ejecuta cuando se subió la imagen de manera correcta
 dropzone.on("success", function (file, response) {
-    console.log(response);
+    // Cuando se suba la imagen correctamente, se agrega el nombre de la imagen al input invisible del formulario de Alta de Publicación
+    document.querySelector('[name="imagen"]').value = response.imagen;
 });
 
 // Evento que se ejecuta cuando se subió la imagen de manera incorrecta
-dropzone.on("error", function (file, message) {
-    console.log(message);
-});
+// dropzone.on("error", function (file, message) {
+//     console.log(message);
+// });
 
 // Evento que se ejecuta cuando se elimina la imagen
 dropzone.on("removedfile", function () {
