@@ -21,11 +21,29 @@ dropzone__WEBPACK_IMPORTED_MODULE_0__["default"].autoDiscover = false; // Funci�
 
 var dropzone = new dropzone__WEBPACK_IMPORTED_MODULE_0__["default"]("#dropzone", {
   dictDefaultMessage: "Sube aquí tu imagen",
-  acceptedFiles: ".png,.jpg,.jpeg, .gif",
+  acceptedFiles: ".png, .jpg, .jpeg, .gif",
   addRemoveLinks: true,
   dictRemoveFile: "Borrar Archivo",
   maxFiles: 1,
-  uploadMultiple: false
+  uploadMultiple: false,
+  init: function init() {
+    // Valida si el usuario ya subió una imagen
+    if (document.querySelector('[name="imagen"]').value.trim()) {
+      // Se crea un objeto con los datos de la imagen
+      var imagenPublicada = {
+        name: document.querySelector('[name="imagen"]').value,
+        // Nombre de la imagen
+        size: 1234 // Este valor es obligatorio, por lo tanto agregamos un valor random
+
+      }; // Se agrega la imagen al dropzone con el objeto creado que contiene los datos de la imagen
+
+      this.options.addedfile.call(this, imagenPublicada); // Indicamos donde se encuentra la imagen almacenada en el servidor
+
+      this.options.thumbnail.call(this, imagenPublicada, "/uploads/".concat(imagenPublicada.name)); // Agregamos clases de Dropzone a la imagen para mostrarla en su campo correspondiente
+
+      imagenPublicada.previewElement.classList.add("dz-success", "dz-complete");
+    }
+  }
 }); // Evento que se ejecuta cuando esta en proceso la subida de la imagen
 // dropzone.on("sending", function(file, xhr, formData) {
 //     console.log(formData);
@@ -42,7 +60,7 @@ dropzone.on("success", function (file, response) {
 // Evento que se ejecuta cuando se elimina la imagen
 
 dropzone.on("removedfile", function () {
-  console.log('Archivo Eliminado');
+  document.querySelector('[name="imagen"]').value = "";
 });
 
 /***/ }),

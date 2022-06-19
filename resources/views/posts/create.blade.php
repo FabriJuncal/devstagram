@@ -38,7 +38,7 @@
                     type="text"
                     placeholder="Titulo de la Publicación"
                     class="border p-2 w-full rounded-lg @error('titulo') border-red-500 @enderror"
-                    value="{{ old('titulo') }}">
+                    value="{{ old('titulo') }}"> {{-- old('[string]') => con esta función hacemos referencia al valor que se había ingresado en el campo y al resetear el formulario por la validación, no se pierde el valor de este campo --}}
 
                     @error('titulo')
                         <span class="text-red-500 text-xs Helvetica">
@@ -56,7 +56,7 @@
                     type="text"
                     placeholder="Descripción de la Publicación"
                     class="border p-2 w-full rounded-lg @error('descripcion') border-red-500 @enderror"
-                    value="{{ old('descripcion') }}">
+                    value="{{ old('descripcion') }}"> {{-- old('[string]') => con esta función hacemos referencia al valor que se había ingresado en el campo y al resetear el formulario por la validación, no se pierde el valor de este campo --}}
 
                     @error('descripcion')
                         <span class="text-red-500 text-xs Helvetica">
@@ -68,7 +68,8 @@
                 <div class="mb-5">
                     <input
                     name="imagen"
-                    type="hidden">
+                    type="hidden"
+                    value="{{ old('imagen') }}"> {{-- old('[string]') => con esta función hacemos referencia al valor que se había ingresado en el campo y al resetear el formulario por la validación, no se pierde el valor de este campo --}}
 
                     @error('imagen')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
