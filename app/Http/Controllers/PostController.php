@@ -45,12 +45,27 @@ class PostController extends Controller
             'imagen' => 'required', //
         ]);
 
-        Post::create([
-            'titulo' => $request->titulo,
-            'descripcion' => $request->descripcion,
-            'imagen' => $request->imagen,
-            'user_id' => auth()->user()->id
-        ]);
+        // Forma 1:
+        // create => Es una función del modelo "Post" que era los métodos de la clase "Model" en donde esta función se encarga de insertar un nuevo registro en la base de datos
+        // Post::create([
+        //     'titulo' => $request->titulo,
+        //     'descripcion' => $request->descripcion,
+        //     'imagen' => $request->imagen,
+        //     'user_id' => auth()->user()->id
+        // ]);
+
+        // Forma 2:
+        // Instanciamos la clase "Post" que era los métodos de la clase "Model"
+        $post = new Post;
+        // Asignamos los valores a los atributos del modelo
+        $post->titulo = $request->titulo;
+        $post->descripcion = $request->descripcion;
+        $post->imagen = $request->imagen;
+        $post->user_id = auth()->user()->id;
+        // Guardamos el registro en la base de datos
+        $post->save();
+
+
 
         return redirect()->route('post.index', auth()->user()->username);
     }
