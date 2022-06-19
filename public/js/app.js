@@ -60,6 +60,7 @@ dropzone.on("success", function (file, response) {
 // Evento que se ejecuta cuando se elimina la imagen
 
 dropzone.on("removedfile", function () {
+  // Cuando se elimine la imagen, se elimina el nombre de la imagen del input invisible del formulario de Alta de Publicación
   document.querySelector('[name="imagen"]').value = "";
 });
 
