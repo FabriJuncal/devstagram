@@ -53,6 +53,8 @@ class User extends Authenticatable
     */
     public function posts()
     {
+        // hasMany() => Método que hace la relación de "Uno a Muchos"
+        //  -> Parametro => Modelo con el que se quiere relacionar
         return $this->hasMany(Post::class);
     }
 }
