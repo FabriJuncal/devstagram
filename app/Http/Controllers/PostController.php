@@ -54,16 +54,27 @@ class PostController extends Controller
         //     'user_id' => auth()->user()->id
         // ]);
 
-        // Forma 2:
-        // Instanciamos la clase "Post" que era los métodos de la clase "Model"
-        $post = new Post;
-        // Asignamos los valores a los atributos del modelo
-        $post->titulo = $request->titulo;
-        $post->descripcion = $request->descripcion;
-        $post->imagen = $request->imagen;
-        $post->user_id = auth()->user()->id;
-        // Guardamos el registro en la base de datos
-        $post->save();
+        // // Forma 2:
+        // // Instanciamos la clase "Post" que era los métodos de la clase "Model"
+        // $post = new Post;
+        // // Asignamos los valores a los atributos del modelo
+        // $post->titulo = $request->titulo;
+        // $post->descripcion = $request->descripcion;
+        // $post->imagen = $request->imagen;
+        // $post->user_id = auth()->user()->id;
+        // // Guardamos el registro en la base de datos
+        // $post->save();
+
+        // Forma 3:
+        // $request->user()->posts() => Hacemos referencia a la relación entre el modelo "User" y el modelo "Posts"
+        // create() => Función equivalente al INSERT
+        //  -> Parametro => Array con los respectivos nombres de los campos y los valores que se insertarán
+        $request->user()->posts()->create([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'imagen' => $request->imagen,
+            'user_id' => auth()->user()->id
+        ]);
 
 
 
