@@ -44,4 +44,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Creamos la relación  "de Una a Muchos" del Modelo "User" con el Modelo "Post"
+    // con Tinker podremos testear la relación con el siguiente código:
+    /*
+        $usuario = User::find(1)  => Parametro: ID USUARIO
+        $usuario->posts           => Nos devolverá los registros de la tabla "posts" que esten relacionados con el Usuario obtenido anteriormente
+    */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
