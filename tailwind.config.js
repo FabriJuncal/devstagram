@@ -3,7 +3,7 @@ module.exports = {
   content: [
       "./resources/**/*.blade.php", // Hace referencia a todos los archivos blade que se encuentren en la carpeta resource
       "./resources/**/*.js", // Hace referencia a todos los archivos js que se encuentren en la carpeta resource
-      ".vendor/laravel/framework/src/Iluminate/Pagination/resources/views/*.blade.php"
+      "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php"
     ],
   theme: {
     extend: {},
