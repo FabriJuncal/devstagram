@@ -18,6 +18,10 @@ class PostController extends Controller
     // Instanciamos de la clase "User" y lo pasamos como parametro al método
     public function index(User $user)
     {
+
+        // Obtenemos todos los registros de la tabla "posts" Filtrado por el ID del Usuario Autenticado
+        $posts = Post::where('user_id', $user->id)->get();
+
         // auth()->user() => Esta función sirve para obtener el objeto de autenticación de Laravel.
         //                   Este muestra los datos del usuario que se encuentra autenticado.
         // dd(auth()->user());
@@ -25,8 +29,8 @@ class PostController extends Controller
         // View() => Esta función sirve para redireccionar a una vistal.
         // 1er Parametro => Nombre de la vista
         // 2do Parametro => Arreglo con los datos que se le pasan a la vista
-        // compact('user') => Esta función sirve para crear un arreglo con el Key y Value iguales, es decir, es el equivalente de [user => $user]
-        return view('dashboard', compact('user'));
+        // compact('user') => Esta función sirve para crear un arreglo con el Key y Value iguales, es decir, es el equivalente de [user => $user, posts => $posts]
+        return view('dashboard', compact('user', 'posts'));
     }
 
     // La función "create" siempre se encargará de mostrar mediante un GET, la vista "create" donde estará el formulario de ALTA
