@@ -86,8 +86,9 @@ class PostController extends Controller
     }
 
     //La función "show" se encargará de mostrar mediante un GET, la vista "show" donde estará la información del registro que seleccionemos
-    public function show(Post $post)
+    public function show(User $user, Post $post)
     {
-        return view('posts.show', compact('post'));
+        // Enviamos dos parametros a la vista
+        return view('posts.show', compact('user', 'post'));
     }
 }
