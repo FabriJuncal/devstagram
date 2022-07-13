@@ -84,4 +84,10 @@ class PostController extends Controller
 
         return redirect()->route('post.index', auth()->user()->username);
     }
+
+    //La función "show" se encargará de mostrar mediante un GET, la vista "show" donde estará la información del registro que seleccionemos
+    public function show(Post $post)
+    {
+        return view('posts.show', compact('post'));
+    }
 }
