@@ -96,4 +96,8 @@ class PostController extends Controller
         // Enviamos dos parametros a la vista
         return view('posts.show', compact('user', 'post'));
     }
+
+    public function destroy(Post $post){
+        dd('Eliminando', $post);
+    }
 }

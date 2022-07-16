@@ -21,6 +21,19 @@
             <p class="text-sm text-gray-500">{{ $post->created_at->diffForHumans() }}</p>
             <p class="mt-5">{{ $post->descripcion }}</p>
         </div>
+
+        @auth
+            @if($post->user_id === auth()->user()->id)
+                <form action="">
+                    <input
+                        type="submit"
+                        value="Eliminar Publicación"
+                        class="bg-red-500 hover:bg-red-600 p-2 rounded text-white font-bold mt-4 cursor-pointer"
+                    >
+                </form>
+            @endif
+        @endauth
+
     </div>
 
     <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-lg">
@@ -72,6 +85,7 @@
         @endauth
 
         <div class="bg-white shadow mb-5 max-h-96 mt-10">
+            {{-- Si existen comentarios los Iteramos y los Mostramos, sino mostramos un mensaje --}}
             @if($post->comentarios->count())
                 @foreach($post->comentarios as $comentario)
                     <div class="p-5 border-gray-300 border-b">
@@ -84,7 +98,7 @@
                     </div>
                 @endforeach
             @else
-
+                    <p class="p-10 text-center">No hay comentarios aún</p>
             @endif
         </div>
 
