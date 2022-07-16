@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,4 +19,11 @@ class Comentario extends Model
         'post_id',
         'comentario',
     ];
+
+    public function user()
+    {
+        // belongsTo() => Método que hace la relación de "Muchos a Uno"
+        //  -> Parametro => Modelo con el que se quiere relacionar
+        return $this->belongsTo(User::class);
+    }
 }

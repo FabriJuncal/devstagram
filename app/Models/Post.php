@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Comentario;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,5 +35,12 @@ class Post extends Model
         // select() => Equivalente SELECT de SQL
         //  -> Parametro => Array con los nombres de los campos de la tabla que se quiere obtener
         return $this->belongsTo(User::class)->select(['name', 'username']);
+    }
+
+    public function comentarios()
+    {
+        // hasMany() => Método que hace la relación de "Muchos a Muchos"
+        //  -> Parametro => Modelo con el que se quiere relacionar
+        return $this->hasMany(Comentario::class);
     }
 }

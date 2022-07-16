@@ -71,6 +71,23 @@
 
         @endauth
 
+        <div class="bg-white shadow mb-5 max-h-96 mt-10">
+            @if($post->comentarios->count())
+                @foreach($post->comentarios as $comentario)
+                    <div class="p-5 border-gray-300 border-b">
+                            <a href="{{ route('post.index', $comentario->user) }}" class="font-bold">
+                                {{ $comentario->user->username }}
+                            </a>
+                            <p class="mt-2">{{ $comentario->comentario }}</p>
+                            <p class="text-sm text-gray-500">{{ $comentario->created_at->diffForHumans() }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+
+            @endif
+        </div>
+
     </div>
 </div>
 

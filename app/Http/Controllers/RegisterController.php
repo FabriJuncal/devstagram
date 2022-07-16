@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
     //Por convención los controladores deben tener un método llamado "index" cuando este tenga solo 1 método
-    public function index()
+    public function index(User $user)
     {
-        return view('auth.register');
+        return view('auth.register', compact('user'));
     }
 
     public function store(Request $request)
@@ -62,6 +62,6 @@ class RegisterController extends Controller
         auth()->attempt($request->only('email', 'password'));
 
 
-        return redirect()->route('post.index');
+        return redirect()->route('post.index', auth()->user()->username); // Redireccionamos al usuario a su biografia.
     }
 }
