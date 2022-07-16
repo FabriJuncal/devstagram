@@ -97,7 +97,14 @@ class PostController extends Controller
         return view('posts.show', compact('user', 'post'));
     }
 
-    public function destroy(Post $post){
-        dd('Eliminando', $post->id);
+    // La función "destroy" se encargará de eliminar un registro de la base de datos.
+    public function destroy(Post $post)
+    {
+        // Validamos con POLICY que el Usuario que creó la Publicación sea el mismo que el usuario que quiere eliminarlo.
+        $this->authorize('delete', $post);
+        // Eliminamos el registro de la base de datos
+        $post->delete();
+        // Redireccionamos a la ruta "post.index", y enviamós el usuario autenticado como parametro
+        return redirect()->route('post.index', auth()->user()->username);
     }
 }
