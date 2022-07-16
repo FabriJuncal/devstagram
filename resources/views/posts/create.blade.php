@@ -50,14 +50,15 @@
                     <label for="descripcion" class="mb-1 block uppercase text-gray-500 font-bold">
                         Descripción
                     </label>
-                    <input
+                    {{-- old('[string]') => con esta función hacemos referencia al valor que se había ingresado en el campo y al resetear el formulario por la validación, no se pierde el valor de este campo --}}
+                    {{-- ¡¡ADVERTENCIA!! --}}
+                    {{-- No tiene que haber Salto de Linea entre la Etiqueta de Apertura y Cierre del "Textarea", sino se rompe el estilo del elemento --}}
+                    <textarea
                     id="descripcion"
                     name="descripcion"
-                    type="text"
                     placeholder="Descripción de la Publicación"
-                    class="border p-2 w-full rounded-lg @error('descripcion') border-red-500 @enderror"
-                    value="{{ old('descripcion') }}"> {{-- old('[string]') => con esta función hacemos referencia al valor que se había ingresado en el campo y al resetear el formulario por la validación, no se pierde el valor de este campo --}}
-
+                    rows="4"
+                    class="border p-2 w-full rounded-lg @error('descripcion') border-red-500 @enderror">{{ old('descripcion') }}</textarea>
                     @error('descripcion')
                         <span class="text-red-500 text-xs Helvetica">
                             * {{ $message }}

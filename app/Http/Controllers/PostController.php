@@ -20,7 +20,7 @@ class PostController extends Controller
     {
 
         // Obtenemos todos los registros de la tabla "posts" Filtrado por el ID del Usuario Autenticado
-        $posts = Post::where('user_id', $user->id)->paginate(5);
+        $posts = Post::where('user_id', $user->id)->paginate(8);
 
         // auth()->user() => Esta función sirve para obtener el objeto de autenticación de Laravel.
         //                   Este muestra los datos del usuario que se encuentra autenticado.
