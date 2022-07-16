@@ -24,7 +24,11 @@
 
         @auth
             @if($post->user_id === auth()->user()->id)
-                <form action="">
+                <form method="POST" action="{{ route('posts.destroy', $post) }}">
+                    {{-- METHOD SPOOFING: sirven para agregar otros tipos de peticiones como lo son: DELETE, PUT y PATCH --}}
+                    @method('DELETE')
+                    {{-- @csrf => Se utiliza esta función para generar un hash de seguridad que se utilizará para cada petición que se realice --}}
+                    @csrf
                     <input
                         type="submit"
                         value="Eliminar Publicación"
