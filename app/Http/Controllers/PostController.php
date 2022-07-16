@@ -10,9 +10,14 @@ class PostController extends Controller
 {
     public function __construct()
     {
+        // $this->middleware('auth'):
         // Valida que haya un Usuario Autenticado, de esta manera protegemos la ruta en el cual se requiere que el usuario se encuentre logeado
         // Por defecto redirecciona a la ruta "login", por lo tanto hay que crear esta vista en la carpeta "resources/views/auth"
-        $this->middleware('auth');
+
+       // ->except(['show', 'index']): Función que permite hacer excepciones a las rutas que se desean excluir de la validación de autenticación.
+       // En este caso, la ruta "show" y "index" no requieren de autenticación y el usuario podrá visualizar la publicación sin estar logeado.
+       // Parametro -> Array con los nombres de los métodos que se desean excluir de la validación de autenticación.
+        $this->middleware('auth')->except(['show', 'index']);
     }
 
     // Instanciamos de la clase "User" y lo pasamos como parametro al método
