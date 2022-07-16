@@ -29,6 +29,15 @@
         @auth
 
             <p class="text-xl font-bold text-center mb-4">Agrega un Nuevo Comentario</p>
+
+            {{-- Mostramos el mensaje retornado por medio de la función back()->with() en el controlador --}}
+            {{-- los mensajes retornados por la función back()->with() se almacenan en la sesión, y se obtiene con la función "session([VARIABLE_DEFINIDA_EN_EL_CONTROLADOR])" --}}
+            @if(session('mensaje'))
+                <div class="bg-green-500 p-2 rounded-lg mb-6 text-white text-center uppercase font-bold">
+                    {{ session('mensaje') }}
+                </div>
+            @endif
+
             <form action="{{ route('comentarios.store', ['post' => $post, 'user' => $user]) }}" method="POST">
                 {{-- @csrf => Se utiliza esta función para generar un hash de seguridad que se utilizará para cada petición que se realice --}}
                 @csrf
