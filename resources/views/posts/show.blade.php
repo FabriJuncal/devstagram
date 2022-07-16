@@ -25,11 +25,14 @@
 
     <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-lg">
 
-        {{-- @auth => Herlper de Laravel que permite que todo lo que se encuentre dentro, solo lo puedan ver los usuarios autenticados --}}
+        {{-- @auth => Directiva de Laravel que permite que todo lo que se encuentre dentro, solo lo puedan ver los usuarios autenticados --}}
         @auth
 
             <p class="text-xl font-bold text-center mb-4">Agrega un Nuevo Comentario</p>
-            <form>
+            <form action="{{ route('comentarios.store', ['post' => $post, 'user' => $user]) }}" method="POST">
+                {{-- @csrf => Se utiliza esta función para generar un hash de seguridad que se utilizará para cada petición que se realice --}}
+                @csrf
+
                 <div class="mb-5">
                     <label for="comentario" class="mb-2 block uppercase text-gray-500 font-bold">
                         Añade un comentario
