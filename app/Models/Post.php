@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Comentario;
 use App\Models\like;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Stmt\Return_;
 
 class Post extends Model
 {
@@ -50,5 +52,12 @@ class Post extends Model
         // hasMany() => Método que hace la relación de "Muchos a Muchos"
         //  -> Parametro => Modelo con el que se quiere relacionar
         return $this->hasMany(Like::class);
+    }
+
+    public function checkLike(User $user)
+    {
+        // Si el usuario ya ha dado like a este post, devuelve true
+        // constains() => Método que comprueba si un array contiene un elemento dado y retorna true o false
+        return $this->likes->contains('user_id', $user->id);
     }
 }
