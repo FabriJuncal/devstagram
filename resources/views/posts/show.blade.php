@@ -52,7 +52,10 @@
 
             @endauth
 
-            <p>0 Likes</p>
+            {{-- Obtenemos la cantidad de Likes de la Publicación --}}
+            <p class="font-bold">{{ $post->likes->count() }}
+                <span class="font-normal">Likes</span>
+            </p>
 
         </div>
 
