@@ -52,3 +52,5 @@ Route::post('/{user:username}/posts/{post}', [ComentarioController::class, 'stor
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
 // Controlador que se encargará de registrar los likes de los Posts
 Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
+// Controlador que se encargará de eliminar los likes de los Posts
+Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('posts.likes.destroy');

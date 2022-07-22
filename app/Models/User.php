@@ -57,4 +57,11 @@ class User extends Authenticatable
         //  -> Parametro => Modelo con el que se quiere relacionar
         return $this->hasMany(Post::class);
     }
+
+    public function likes()
+    {
+        // hasMany() => Método que hace la relación de "Uno a Muchos"
+        //  -> Parametro => Modelo con el que se quiere relacionar
+        return $this->hasMany(Like::class);
+    }
 }
