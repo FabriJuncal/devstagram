@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\ImagenController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PostController;
@@ -49,3 +50,5 @@ Route::post('/{user:username}/posts/{post}', [ComentarioController::class, 'stor
 
 // Controlador que se encarga de subir las imagenes al servidor
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
+// Controlador que se encargará de registrar los likes de los Posts
+Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
