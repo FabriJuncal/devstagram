@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
+
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -104,6 +106,18 @@ class PostController extends Controller
         $this->authorize('delete', $post);
         // Eliminamos el registro de la base de datos
         $post->delete();
+
+        // Eliminamos la imagen fisica del servidor
+        $imagen_path = public_path('uploads/' . $post->imagen);
+
+        // File::exists() => Función que permite verificar si el archivo existe en el servidor.
+        // Parametro => Ruta del archivo que se desea verificar.
+        if(File::exists($imagen_path)) {
+            // unlink() => Función que permite eliminar un archivo fisico del servidor.
+            // Parametro => Ruta del archivo que se desea eliminar.
+            unlink($imagen_path);
+        }
+
         // Redireccionamos a la ruta "post.index", y enviamós el usuario autenticado como parametro
         return redirect()->route('post.index', auth()->user()->username);
     }
