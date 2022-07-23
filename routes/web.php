@@ -5,6 +5,7 @@ use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -45,7 +46,7 @@ Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 // Pasamos dos parametros por medio del Router Model Binding
 Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
-
+// Controlador que se encarga de agregar el comentario en la publicación
 Route::post('/{user:username}/posts/{post}', [ComentarioController::class, 'store'])->name('comentarios.store');
 
 // Controlador que se encarga de subir las imagenes al servidor
@@ -54,3 +55,7 @@ Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.sto
 Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
 // Controlador que se encargará de eliminar los likes de los Posts
 Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('posts.likes.destroy');
+
+// Controladores que se encargan de gestionar el perfil del usuario
+Route::get('{user:username}/editar-perfil', [PerfilController::class, 'index'])->name('perfil.index');
+Route::post('{user:username}/editar-perfil', [PerfilController::class, 'store'])->name('perfil.store');
