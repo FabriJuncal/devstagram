@@ -8,7 +8,10 @@
 
     <div class="md:flex md:justify-center">
         <div class="md:w-1/3 bg-white shadow p-6">
-            <form action="" class="mt-10 md:mt-0">
+            {{-- enctype => Modifica el body de la petició para indicar el tipo de información se enviará.
+             "multipart/form-data" =>  Se utiliza cuando en la petición se envía información por el campo <input type="file"> --}}
+            <form method="POST" action="{{ route('perfil.store') }}" enctype="multipart/form-data" class="mt-10 md:mt-0">
+                @csrf
                 <div class="mb-5">
                     <label for="username" class="mb-1 block uppercase text-gray-500 font-bold">
                         Username
