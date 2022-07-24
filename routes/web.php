@@ -31,6 +31,7 @@ Route::get('/', function () {
 // en muchos lugares, solo basta con cambiar el nombre de la ruta en este unico lugar.
 // Tambien hay que tener encuenta que el Alias puede ser aplicado a rutas iguales con distinto método (GET, POST, PUT, DELETE)
 // solo se tiene que agregar el Alias a la primera ruta y debajo agregar toda la rutas iguales pero con distinto método.
+
 Route::get('/crear-cuenta', [RegisterController::class, 'index'])->name('register');
 Route::post('/crear-cuenta', [RegisterController::class, 'store']);
 
@@ -38,24 +39,31 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
-// Esta caracteristica de enviar parametros por medio de la URL y filtrar información obtenida de la base de datos se denomina Router Model Binding
-// Esta caracteristica se utiliza para que el controlador pueda obtener los datos de la base de datos a través de una ruta con un parametro
-Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index');
+// Controladores que se encargan de gestionar el perfil del usuario
+Route::get('/editar-perfil', [PerfilController::class, 'index'])->name('perfil.index');
+Route::post('/editar-perfil', [PerfilController::class, 'store'])->name('perfil.store');
+
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-// Pasamos dos parametros por medio del Router Model Binding
-Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
 // Controlador que se encarga de agregar el comentario en la publicación
 Route::post('/{user:username}/posts/{post}', [ComentarioController::class, 'store'])->name('comentarios.store');
 
 // Controlador que se encarga de subir las imagenes al servidor
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
+
+
+//========================================================================================================================================//
+/** Siempre colocar las rutas con variables por ultimo, ya que de este modo se asegura de que primero se ingrese a las variables fijas **/
+
+// Esta caracteristica de enviar parametros por medio de la URL y filtrar información obtenida de la base de datos se denomina Router Model Binding
+// Esta caracteristica se utiliza para que el controlador pueda obtener los datos de la base de datos a través de una ruta con un parametro
+Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index');
+// Pasamos dos parametros por medio del Router Model Binding
+Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+// Controlador que se encarga de eliminar una publicación
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 // Controlador que se encargará de registrar los likes de los Posts
 Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
 // Controlador que se encargará de eliminar los likes de los Posts
 Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('posts.likes.destroy');
-
-// Controladores que se encargan de gestionar el perfil del usuario
-Route::get('{user:username}/editar-perfil', [PerfilController::class, 'index'])->name('perfil.index');
-Route::post('{user:username}/editar-perfil', [PerfilController::class, 'store'])->name('perfil.store');

@@ -17,6 +17,6 @@ class PerfilController extends Controller
 
     public function index()
     {
-        dd('Aquí se muestra el formulario');
+        return view('perfil.index');
     }
 }
