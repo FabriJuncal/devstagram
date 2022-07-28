@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class PerfilController extends Controller
 {
@@ -30,15 +32,46 @@ class PerfilController extends Controller
         // $this->validate(Instancia del "Request", Array con las reglas de validación) => Esta función sirve para validar los datos que se envían desde el formulario de registro.
         // Sugerencia => Laravel suguiere que cuando un campo contenga mas de 3 reglas de validación, estos deben ir dentro de un corchete.
         //               Como el campo "username" por ejemplo.
+
+        // ADVERTINCIA: no agregar espacios entre cada elementos del array de reglas de validación.
         $this->validate($request, [
             'username' => [
                             'required',
-                            'unique:users, username, '.auth()->user()->id, // Esta validación se hace para que el usuario no pueda cambiar su nombre de usuario a uno que ya existe, pero si puede ingresar su propio nombre de usuario que ya existe.
+                            'unique:users,username,'.auth()->user()->id, // Esta validación se hace para que el usuario no pueda cambiar su nombre de usuario a uno que ya existe, pero si puede ingresar su propio nombre de usuario que ya existe.
                             'min:3',
                             'max:20',
-                            'not_in: twitter, editar-perfil' // Esta validación se hace para que el usuario no pueda cambiar su nombre de usuario a uno que se encuentre dentro de los no permitidos.
+                            'not_in:twitter,editar-perfil' // Esta validación se hace para que el usuario no pueda cambiar su nombre de usuario a uno que se encuentre dentro de los no permitidos.
                           //'in: twitter, editar-perfil' // Esta validación se hace para que el usuario solo pueda agregar los valores permitidos.
                         ], // El nombre de usuario es requerido y debe ser único, no puede tener menos de 3 caracteres y no puede tener más de 20 caracteres.
         ]);
+
+
+        if($request->imagen){
+            // Obtenemos los datos del archivo que se subió
+            $imagen = $request->file('imagen');
+
+            // Creamos un nombre aleatorio para el archivo
+            $nombreImagen = Str::uuid() . "." . $imagen->extension();
+
+            // Pasamos como parametro la imagen que se quiere subír a la función de Intervention.io
+            // De esta forma vamos a poder manipular la imagen antes de subirla al servidor
+            $imagenServidor = Image::make($imagen);
+            $imagenServidor->fit(1000, 1000, null, 'center'); // Redimensionamos la imagen a 1000x1000px y definimos que corte en el centro
+
+            // Definimos la ruta donde vamos a almacenar la imagen
+            $imagenPath = public_path('perfiles/' . $nombreImagen);
+            // Guardamos la imagen en la ruta definida
+            $imagenServidor->save($imagenPath);
+        }
+
+        // Guardar Cambios
+        $usuario = User::find(auth()->user()->id);
+        $usuario->username = $request->username;
+        $usuario->imagen = $nombreImagen ?? '';
+        $usuario->save();
+
+        // Redireccionar
+        return redirect()->route('perfil.index')->with('success', 'Perfil actualizado correctamente');
+
     }
 }
