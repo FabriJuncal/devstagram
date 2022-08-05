@@ -61,6 +61,12 @@ Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.sto
 Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index');
 // Pasamos dos parametros por medio del Router Model Binding
 Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+// Siguiendo a Usuarios
+Route::post('/{user:username}/follow', [PostController::class, 'store'])->name('users.follow');
+// Dejando de seguir a Usuarios
+Route::delete('/{user:username}/unfollow', [PostController::class, 'destroy'])->name('users.unfollow');
+
 // Controlador que se encarga de eliminar una publicación
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 // Controlador que se encargará de registrar los likes de los Posts
