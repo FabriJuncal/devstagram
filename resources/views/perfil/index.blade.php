@@ -90,11 +90,11 @@
                         Nuevo Password
                     </label>
                     <input
-                    id="password_nuevo"
-                    name="password_nuevo"
+                    id="password"
+                    name="password"
                     type="password"
                     placeholder="Tu Nuevo Password"
-                    class="border p-2 w-full rounded-lg @error('password_nuevo') border-red-500 @enderror">
+                    class="border p-2 w-full rounded-lg @error('password') border-red-500 @enderror">
                 </div>
                 <div class="mb-5">
                     {{-- En el campo "Repetir Password" se agregá "_confirmation" en los siguientes atributos
@@ -107,10 +107,10 @@
                     name="password_confirmation"
                     type="password"
                     placeholder="Repite tu Password"
-                    class="border p-2 w-full rounded-lg @error('password_nuevo') border-red-500 @enderror">
+                    class="border p-2 w-full rounded-lg @error('password') border-red-500 @enderror">
                 </div>
 
-                @error('password_nuevo')
+                @error('password')
                     <span class="text-red-500 text-xs Helvetica">
                         * {{ $message }}
                     </span>

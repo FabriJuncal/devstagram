@@ -76,15 +76,15 @@ class PerfilController extends Controller
 
         // Cambiar la contraseña
 
-        if($request->password_antiguo || $request->password_nuevo || $request->password_confirmation){
+        if($request->password_antiguo || $request->password || $request->password_confirmation){
             // dd($request);
             $this->validate($request, [
                 'password_antiguo' => 'required|min:6',
-                'password_nuevo' => 'required|confirmed|min:6'
+                'password' => 'required|confirmed|min:6'
             ]);
 
             if(Hash::check($request->password_antiguo, $usuario->password)){
-                $usuario->password = Hash::make($request->password_nuevo);
+                $usuario->password = Hash::make($request->password);
                 $usuario->save();
             } else {
                 // Redirecciona al formularió de edición de perfil con un mensaje de error.
@@ -94,7 +94,7 @@ class PerfilController extends Controller
         }
 
         // Redirecciona al perfil del usuario con un mensaje de éxito.
-        return redirect()->route('perfil.index')->with('success', 'Perfil actualizado correctamente');
+        return redirect()->route('post.index', auth()->user()->username);
 
     }
 }
