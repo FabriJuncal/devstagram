@@ -45,6 +45,46 @@
                     {{ $user->posts->count() }}
                     <span class="font-normal">Posts</span>
                 </p>
+
+                {{-- Solo los usuarios Autenticados podran ver los botones --}}
+                @auth
+
+                    <form
+                        action=""
+                        method="POST"
+                    >
+                        @csrf
+                        {{-- <input
+                            type="submit"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                            value="Seguir"
+                        /> --}}
+
+                        <button
+                            type="submit"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                            Seguir
+                        </button>
+                    </form>
+
+                    <form
+                    action=""
+                    method="POST"
+                >
+                    @csrf
+                    {{-- <input
+                        type="submit"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+                        value="Dejar de Seguir"
+                    /> --}}
+
+                    <button
+                        type="submit"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+                        Dejar de Seguir
+                    </button>
+                </form>
+            @endauth
             </div>
         </div>
     </div>
