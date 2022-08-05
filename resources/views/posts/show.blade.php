@@ -92,6 +92,7 @@
 
             {{-- Mostramos el mensaje retornado por medio de la función back()->with() en el controlador --}}
             {{-- los mensajes retornados por la función back()->with() se almacenan en la sesión, y se obtiene con la función "session([VARIABLE_DEFINIDA_EN_EL_CONTROLADOR])" --}}
+                            {{-- session('mensaje') => es una forma de obtener una variable que lo obtenemos desde los Controladores al realizar una redireccion--}}
             @if(session('mensaje'))
                 <div class="bg-green-500 p-2 rounded-lg mb-6 text-white text-center uppercase font-bold">
                     {{ session('mensaje') }}

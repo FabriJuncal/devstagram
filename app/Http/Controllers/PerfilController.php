@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Hash;
 
 class PerfilController extends Controller
 {
@@ -25,6 +26,7 @@ class PerfilController extends Controller
 
     public function store(Request $request)
     {
+
         // Modificación del Request
         //$request->request->add() => Esta función sobreescribe el valor del campo que se le pasa como parámetro.
         $request->request->add(["username" => Str::slug( $request->username )]);
@@ -43,6 +45,7 @@ class PerfilController extends Controller
                             'not_in:twitter,editar-perfil' // Esta validación se hace para que el usuario no pueda cambiar su nombre de usuario a uno que se encuentre dentro de los no permitidos.
                           //'in: twitter, editar-perfil' // Esta validación se hace para que el usuario solo pueda agregar los valores permitidos.
                         ], // El nombre de usuario es requerido y debe ser único, no puede tener menos de 3 caracteres y no puede tener más de 20 caracteres.
+            'email' => ['required','unique:users,email,'.auth()->user()->id,'email','max:60'], // El email es requerido y debe ser único, debe ser un email válido y no puede tener más de 60 caracteres.
         ]);
 
 
@@ -67,10 +70,30 @@ class PerfilController extends Controller
         // Guardar Cambios
         $usuario = User::find(auth()->user()->id);
         $usuario->username = $request->username;
-        $usuario->imagen = $nombreImagen ?? '';
+        $usuario->email = $request->email;
+        $usuario->imagen = $nombreImagen ?? auth()->user()->imagen ?? null;
         $usuario->save();
 
-        // Redireccionar
+        // Cambiar la contraseña
+
+        if($request->password_antiguo || $request->password_nuevo || $request->password_confirmation){
+            // dd($request);
+            $this->validate($request, [
+                'password_antiguo' => 'required|min:6',
+                'password_nuevo' => 'required|confirmed|min:6'
+            ]);
+
+            if(Hash::check($request->password_antiguo, $usuario->password)){
+                $usuario->password = Hash::make($request->password_nuevo);
+                $usuario->save();
+            } else {
+                // Redirecciona al formularió de edición de perfil con un mensaje de error.
+                return back()->with('mensaje', 'La contraseña antigüa no coincide.');
+            }
+
+        }
+
+        // Redirecciona al perfil del usuario con un mensaje de éxito.
         return redirect()->route('perfil.index')->with('success', 'Perfil actualizado correctamente');
 
     }

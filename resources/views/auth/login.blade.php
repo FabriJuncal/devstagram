@@ -21,7 +21,7 @@
 
                 {{-- Valida que el campo "mensaje" de la session contenga algún valor. --}}
                 {{-- En el caso que contenga algún valor, este imprime el mensaje en pantalla. --}}
-                {{-- session('mensaje') => es una forma de obtener una variable que lo obtenemos desde los Controladores --}}
+                {{-- session('mensaje') => es una forma de obtener una variable que lo obtenemos desde los Controladores al realizar una redireccion--}}
                 @if(session('mensaje'))
                     <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2">
                         {{ session('mensaje') }}
