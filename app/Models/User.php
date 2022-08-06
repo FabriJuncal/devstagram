@@ -64,4 +64,14 @@ class User extends Authenticatable
         //  -> Parametro => Modelo con el que se quiere relacionar
         return $this->hasMany(Like::class);
     }
+
+    public function followers()
+    {
+        // hasMany() => Método que hace la relación de "Uno a Muchos"
+        //  -> 1er Parametro => Modelo con el que se quiere relacionar
+        //  -> 2do Parametro => Nombre de la tabla "followers" que contiene el ID del Usuario propio y el ID del Usuario que se va a seguir
+        //  -> 3er Parametro => Nombre de la columna en la tabla "users" que contiene el ID del Usuario que se va a seguir
+        //  -> 4to Parametro => Nombre de la columna en la tabla "followers" que contiene el ID del Usuario propio
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
 }

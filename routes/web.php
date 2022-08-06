@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
@@ -63,9 +64,9 @@ Route::get('/{user:username}', [PostController::class, 'index'])->name('post.ind
 Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 // Siguiendo a Usuarios
-Route::post('/{user:username}/follow', [PostController::class, 'store'])->name('users.follow');
+Route::post('/{user:username}/follow', [FollowerController::class, 'store'])->name('users.follow');
 // Dejando de seguir a Usuarios
-Route::delete('/{user:username}/unfollow', [PostController::class, 'destroy'])->name('users.unfollow');
+Route::delete('/{user:username}/unfollow', [FollowerController::class, 'destroy'])->name('users.unfollow');
 
 // Controlador que se encarga de eliminar una publicación
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
