@@ -34,14 +34,17 @@
                     @endauth
                 </div>
                 <p class="text-gray-800 text-sm mb-3 font-bold mt-5">
-                    0
-                    <span class="font-normal">Seguidores</span>
+                    {{-- Muestra la Cantidad de Seguidores que tiene el Usuario--}}
+                    {{ $user->followers->count() }}
+                    {{-- @choice() => Según el valor numero que se le pase como 2do Parametro, este identificará si debe mostrar el String 1 o 2 que se le pase como 1er Parametro  --}}
+                    <span class="font-normal"> @choice('Seguidor|Seguidores', $user->followers->count()) </span>
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
                     0
                     <span class="font-normal">Siguiendo</span>
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
+                    {{-- Muestra la Cantidad de Post del Usuario --}}
                     {{ $user->posts->count() }}
                     <span class="font-normal">Posts</span>
                 </p>
