@@ -49,44 +49,48 @@
                 {{-- Solo los usuarios Autenticados podran ver los botones --}}
                 @auth
                     @if ($user->id !== auth()->user()->id)
+                        @if( !$user->siguiendo( auth()->user() ))
 
-                        <form
-                            action="{{ route('users.follow', $user)}}"
+                            <form
+                                action="{{ route('users.follow', $user)}}"
+                                method="POST"
+                            >
+                                @csrf
+                                <input
+                                    type="submit"
+                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                                    value="Seguir"
+                                />
+
+                                {{-- <button
+                                    type="submit"
+                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                                    Seguir
+                                </button> --}}
+                            </form>
+
+                        @else
+
+                            <form
+                            action="{{ route('users.unfollow', $user)}}"
                             method="POST"
-                        >
-                            @csrf
-                            <input
-                                type="submit"
-                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-                                value="Seguir"
-                            />
+                            >
+                                @csrf
+                                @method('DELETE')
+                                {{-- <input
+                                    type="submit"
+                                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+                                    value="Dejar de Seguir"
+                                /> --}}
 
-                            {{-- <button
-                                type="submit"
-                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                                Seguir
-                            </button> --}}
-                        </form>
+                                <button
+                                    type="submit"
+                                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+                                    Dejar de Seguir
+                                </button>
+                            </form>
 
-                        <form
-                        action="{{ route('users.unfollow', $user)}}"
-                        method="POST"
-                        >
-                            @csrf
-                            @method('DELETE')
-                            {{-- <input
-                                type="submit"
-                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
-                                value="Dejar de Seguir"
-                            /> --}}
-
-                            <button
-                                type="submit"
-                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
-                                Dejar de Seguir
-                            </button>
-                        </form>
-
+                        @endif
                     @endif
             @endauth
             </div>
