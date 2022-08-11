@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,7 +12,10 @@ class HomeController extends Controller
     function __invoke()
     {
         // Obtener a quienes seguimos
-        dd(auth()->user()->followings->pluck('id')->toArray());
-        return view('home');
+        $ids = auth()->user()->followings->pluck('id')->toArray();
+        // Filtramos los Post por los Usuarios que seguimos
+        $posts = Post::whereIn('user_id', $ids)->paginate(20);
+
+        return view('home', compact('posts'));
     }
 }
