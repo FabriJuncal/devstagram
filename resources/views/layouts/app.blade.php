@@ -67,8 +67,10 @@
 
         <main class="container mx-auto mt-10">
             <h2 class="font-black text-center text-3xl mb-10">
+                {{-- @yield() => Contenedor que reserva el lugar para el texto u código html que pasemos como parametro --}}
                 @yield('titulo')
             </h2>
+            {{-- @yield() => Contenedor que reserva el lugar para el texto u código html que pasemos como parametro --}}
             @yield('contenido')
         </main>
 
