@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
@@ -22,9 +23,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('principal');
-});
+// Al tener el método __invoke en la classe HomeController, podemos hacer uso de esta sintaxis, ya que siempre se va a ejecutar el método __invoke
+Route::get('/', HomeController::class)->name('home');
 
 // ->name('string'): Esta función se utiliza para agregarle un Alias a la ruta,
 // de esta manera se podrá hacer referencia a la ruta nombrando el Alias en la cantida
