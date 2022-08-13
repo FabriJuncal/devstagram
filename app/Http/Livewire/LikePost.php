@@ -14,11 +14,17 @@ class LikePost extends Component
     // Atributo que se usa para saber si el usuario ya ha dado like al post
     public $isLiked;
 
+    // Atributo que se usa como contador de likes del post
+    public $likes;
+
     // mount() es un método que se ejecuta automáticamente cuando el componente se carga,
     // vendría a ser como el constructor del componente, donde este se ejecuta cuando se instancía o se carga el componente.
     public function mount()
     {
+        // Al cargar el componente, se verifica si el usuario ya ha dado like al post
         $this->isLiked = $this->post->checkLike(auth()->user());
+        // Se obtiene el número de likes del post
+        $this->likes = $this->post->likes()->count();
     }
 
 
@@ -31,12 +37,14 @@ class LikePost extends Component
             // Si ya ha dado like al post, entonces se elimina el like
             $this->post->likes()->where('post_id', $this->post->id)->delete();
             $this->isLiked = false;
+            $this->likes--;
         } else {
             // Si no ha dado like al post, entonces se crea un nuevo like
             $this->post->likes()->create([
                 'user_id' => auth()->user()->id
             ]);
             $this->isLiked = true;
+            $this->likes++;
         }
 
 

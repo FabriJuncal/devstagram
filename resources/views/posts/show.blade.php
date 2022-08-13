@@ -22,12 +22,6 @@
                 <livewire:like-post :post="$post"/>
 
             @endauth
-
-            {{-- Obtenemos la cantidad de Likes de la Publicación --}}
-            <p class="font-bold">{{ $post->likes->count() }}
-                <span class="font-normal">Likes</span>
-            </p>
-
         </div>
 
         <div>
