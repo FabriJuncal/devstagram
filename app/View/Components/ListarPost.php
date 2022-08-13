@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class ListarPost extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
+
+    // Se debe definir el atributo del componente para que se pueda acceder a él desde la vista
+    public $posts;
+
+    // Desde el constructor debemos pasar el parámetro que se va a mostrar en la vista
+    // Este tomará el parametro que se le pase desde la vista donde se esta llamando al componente
+    // en este caso se le pasó <x-listar-post :posts="$posts"/>
+    public function __construct($posts)
     {
-        //
+        $this->posts = $posts;
     }
 
     /**

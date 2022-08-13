@@ -10,7 +10,7 @@
     {{-- Componente de Laravel: --}}
     {{-- Todos los componentes de laravel comienzan con "x-" --}}
     {{-- Los componentes que no vayan a recibír parametros deben ser de una sola etiqueta y deben cerrarse con "/>" --}}
-    <x-listar-post/>
+    {{-- <x-listar-post/> --}}
 
     {{-- A los componentes de Laravel se le pueden pasar parametros de las siguientes maneras: --}}
     {{-- Forma 1 --}}
@@ -28,6 +28,11 @@
         </x-slot:titulo>
         <h1>Mostrando post desde Slot</h1>
     </x-listar-post> --}}
+
+    {{-- Tambien se le pueden pasar variables a los componentes de Laravel --}}
+    {{-- Como po ejemplo en este caso le pasamos el objeto $Post de la siguiente manera --}}
+    {{-- CONSEJO: siempre el atributo y la variable deben poseer el mismo nombre para evitar conflictos --}}
+    <x-listar-post :posts="$posts"/>
 
 
 
