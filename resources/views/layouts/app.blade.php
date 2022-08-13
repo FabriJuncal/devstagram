@@ -14,6 +14,8 @@
         <title>DevStagram - @yield('titulo')</title>
         {{-- defer => Atributo que indica que no se ejecutará el script hasta que la página se haya cargado --}}
         <script src="{{ asset('js/app.js')}}" defer></script>
+        {{-- Importamos los estilos de Livewire --}}
+        @livewireStyles
     </head>
     <body class="bg-gray-100">
         <header class="p-5 border-b bg-white shadow">
@@ -78,5 +80,8 @@
             {{-- now(): Helper de Laravel para mostrar la fecha actual --}}
             DevStagram - Todos los derechos reservados {{ now()->year }}
         </footer>
+
+        {{-- Cargamos los Scripts de Livewire --}}
+        @livewireScripts
     </body>
 </html>

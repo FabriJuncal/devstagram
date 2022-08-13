@@ -15,6 +15,11 @@
         <div class="p-3 flex items-center gap-4">
             {{-- Directiva que detecta si el usuario se encuentra Logeado y muestra lo que tenga dentro --}}
             @auth
+
+                {{-- Invocamos a un componente de Livewire --}}
+                {{-- Este siempre empieza por el nombre "livewire:" y luego el nombre del componente --}}
+                <livewire:like-post/>
+
                 {{-- Validamos si el usuario ya dio Like a la Publicación --}}
                 @if( $post->checkLike(auth()->user() ))
 
