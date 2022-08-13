@@ -18,7 +18,8 @@
 
                 {{-- Invocamos a un componente de Livewire --}}
                 {{-- Este siempre empieza por el nombre "livewire:" y luego el nombre del componente --}}
-                <livewire:like-post/>
+                {{-- CONSEJO: siempre el atributo y la variable deben poseer el mismo nombre para evitar conflictos --}}
+                <livewire:like-post :post="$post"/>
 
                 {{-- Validamos si el usuario ya dio Like a la Publicación --}}
                 @if( $post->checkLike(auth()->user() ))

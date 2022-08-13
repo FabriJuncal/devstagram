@@ -8,6 +8,8 @@ class ListarPost extends Component
 {
 
     // Se debe definir el atributo del componente para que se pueda acceder a él desde la vista
+    // Este debe llamarse igual al atributo del componente de la vista, en este caso se pasó:
+    // <x-listar-post :posts="$posts"/>
     public $posts;
 
     // Desde el constructor debemos pasar el parámetro que se va a mostrar en la vista
