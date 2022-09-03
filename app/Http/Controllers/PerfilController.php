@@ -61,6 +61,12 @@ class PerfilController extends Controller
             $imagenServidor = Image::make($imagen);
             $imagenServidor->fit(1000, 1000, null, 'center'); // Redimensionamos la imagen a 1000x1000px y definimos que corte en el centro
 
+            // Validamos si existe el directorio
+            if(!file_exists(public_path('perfiles'))){
+                // Si no existe creamos el directorio
+                mkdir(public_path('perfiles'), 0777, true);
+            }
+
             // Definimos la ruta donde vamos a almacenar la imagen
             $imagenPath = public_path('perfiles/' . $nombreImagen);
             // Guardamos la imagen en la ruta definida
