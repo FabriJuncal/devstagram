@@ -49,7 +49,7 @@ class PerfilController extends Controller
         ]);
 
 
-        if($request->imagen){
+        if($request->hasFile('imagen')){
             // Obtenemos los datos del archivo que se subió
             $imagen = $request->file('imagen');
 
@@ -100,7 +100,7 @@ class PerfilController extends Controller
         }
 
         // Redirecciona al perfil del usuario con un mensaje de éxito.
-        return redirect()->route('post.index', auth()->user()->username);
+        return redirect()->route('post.index', $request->username);
 
     }
 }
